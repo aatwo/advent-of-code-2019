@@ -5,9 +5,9 @@
             "name": "(Windows) day 1",
             "type": "cppvsdbg",
             "request": "launch",
-            "program": "${workspaceRoot}/build/day1/Debug/advent-of-code.exe",
+            "program": "${workspaceRoot}/build/Debug/advent-of-code.exe",
             "args": [
-                "${workspaceRoot}/day1/module-mass-list.txt"
+                "${workspaceRoot}/module-mass-list.txt"
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceRoot}",

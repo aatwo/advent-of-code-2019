@@ -15,6 +15,47 @@ void print_help()
     std::cout << "--------------------------------------------------\n";
 }
 
+int64_t calculate_fuel_required_for_mass(int64_t mass)
+{
+    return static_cast<int64_t>(floor(static_cast<double>(mass) / 3.0)) - 2;
+}
+
+int64_t calculate_fuel_required_for_module(int64_t module_mass)
+{
+    std::vector<int64_t> all_sub_fuel_values;
+
+    int64_t total_fuel_required = 0;
+    int64_t current_mass = module_mass;
+    while(current_mass > 0)
+    {
+        // Get the fuel required for the current mass
+        int64_t current_fuel_required = calculate_fuel_required_for_mass(current_mass);
+
+        // Ignore negative fuel values
+        if(current_fuel_required <= 0)
+            break;
+
+        // Add the fuel required to the running total
+        all_sub_fuel_values.push_back(current_fuel_required);
+        total_fuel_required += current_fuel_required;
+
+        // The fuel required for the last mass becomes the next mass
+        current_mass = current_fuel_required;
+    }
+
+    std::cout << "total fuel required (" << total_fuel_required << ") (";
+    for(int i = 0; i < all_sub_fuel_values.size(); i++)
+    {
+        std::cout << all_sub_fuel_values[i];
+        bool is_end = (i == all_sub_fuel_values.size() - 1);
+        if(!is_end)
+            std::cout << " + ";
+        else
+            std::cout << ")\n";
+    }
+    return total_fuel_required;
+}
+
 int main( int argc, char** argv )
 {
     try
@@ -41,10 +82,9 @@ int main( int argc, char** argv )
             if(current_module_mass <= 0)
                 continue;
 
-            int64_t fuel_required = 0;
-            static_cast<int64_t>(floor(static_cast<double>(current_module_mass) / 3.0)) - 2;
+            std::cout << "    module (" << i << "), mass (" << current_module_mass << "), ";
+            int64_t fuel_required = calculate_fuel_required_for_module(current_module_mass);
             total_fuel_required += fuel_required;
-            std::cout << "    line (" << i << "), mass (" << current_module_mass << "), fuel required (" << fuel_required << ")\n";
             i++;
         }
         
