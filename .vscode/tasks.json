@@ -1,0 +1,30 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "taskName": "build-all-debug",
+            "command": "cd build; cmake --build . --config Debug",
+            "type": "shell",
+            "dependsOn": "config"
+        },
+        {
+            "taskName": "build-all-release",
+            "command": "cd build; cmake --build . --config Release",
+            "type": "shell",
+            "dependsOn": "config"
+        },
+        {
+            "taskName": "config",
+            "command": "cd build; cmake -G 'Visual Studio 15 2017 Win64' ..",
+            "type": "shell",
+            "dependsOn": "make-build-folder"
+        },
+        {
+            "taskName": "make-build-folder",
+            "command": "mkdir -Force build",
+            "type": "shell"
+        }
+    ]
+}
