@@ -5,9 +5,22 @@
             "name": "(Windows) day 1",
             "type": "cppvsdbg",
             "request": "launch",
-            "program": "${workspaceRoot}/build/Debug/advent-of-code.exe",
+            "program": "${workspaceRoot}/build/day1/Debug/advent-of-code-day1.exe",
             "args": [
-                "${workspaceRoot}/module-mass-list.txt"
+                "${workspaceRoot}/day1/module-mass-list.txt"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceRoot}",
+            "environment": [],
+            "externalConsole": true
+        },
+        {
+            "name": "(Windows) day 2",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceRoot}/build/day2/Debug/advent-of-code-day2.exe",
+            "args": [
+                "${workspaceRoot}/day2/op-codes.txt"
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceRoot}",
